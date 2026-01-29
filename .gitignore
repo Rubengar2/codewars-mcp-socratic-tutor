@@ -1,20 +1,17 @@
-# --- Python & System ---
 venv/
 __pycache__/
 *.pyc
 .DS_Store
 .env
 
-# --- Configuración de Usuario (PRIVADO) ---
-# Esto NO se sube, cada usuario genera el suyo con setup.py
 data/config.json
 data/user_profile.json
 data/user_history.json
 
-# --- VS Code ---
-# Ignoramos la configuración porque setup.py la genera con rutas absolutas
 .vscode/
 
-# --- LA EXCEPCIÓN (LO IMPORTANTE) ---
-# No ignoramos el índice, ¡queremos que se suba!
 !data/katas_index.json
+
+exercises/
+__pycache__/
+*.pyc

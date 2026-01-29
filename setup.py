@@ -227,23 +227,18 @@ class SetupWizard:
             return False
             
     def configure_vscode(self) -> bool:
-        """Configure VS Code MCP server settings.
-        
-        Returns:
-            True if successful, False otherwise.
-        """
+        """Configure VS Code MCP server settings."""
         print(f"\n{Colors.BOLD}{'─'*60}{Colors.RESET}")
         print(f"{Colors.BOLD}Paso 2: Configuración de VS Code{Colors.RESET}")
         print(f"{Colors.BOLD}{'─'*60}{Colors.RESET}\n")
         
-        python_path = self.project_root / "venv" / "bin" / "python"
+        # CAMBIO CLAVE: Usamos sys.executable
+        # Esto obtiene la ruta exacta del Python que está ejecutando este script.
+        # Si el usuario activó el venv correctamente, esta será la ruta correcta
+        # sin importar si es Mac, Linux o Windows.
+        python_path = Path(sys.executable)
         
-        if not python_path.exists():
-            self.print_warning(
-                f"No se encontró Python en: {python_path}"
-            )
-            python_path = Path(sys.executable)
-            self.print_info(f"Usando Python del sistema: {python_path}")
+        self.print_info(f"Configurando MCP con intérprete: {python_path}")
             
         mcp_config = {
             "mcp.servers": {
