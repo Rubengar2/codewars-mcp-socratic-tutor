@@ -9,6 +9,7 @@ data/user_profile.json
 data/user_history.json
 
 .vscode/
+!.vscode/extensions.json
 
 !data/katas_index.json
 
