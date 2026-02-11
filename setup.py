@@ -240,11 +240,15 @@ class SetupWizard:
         
         self.print_info(f"Configurando MCP con intérprete: {python_path}")
             
+        # MEJORA: Usamos .as_posix() para convertir backslashes (\) a forward slashes (/)
+        # Esto evita problemas de escape en JSON y funciona nativamente en Windows/Mac/Linux.
+        script_path = (self.project_root / "src" / "main.py").resolve()
+        
         mcp_config = {
             "mcp.servers": {
                 "codewars-tutor": {
-                    "command": str(python_path),
-                    "args": [str(self.project_root / "src" / "main.py")],
+                    "command": python_path.as_posix(),
+                    "args": [script_path.as_posix()],
                     "env": {"PYTHONUNBUFFERED": "1"},
                     "disabled": False,
                     "alwaysAllow": []
